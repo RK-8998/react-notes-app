@@ -6,7 +6,7 @@ const Home = () => {
   return (
     <>
       <Typography variant="h3">Home</Typography>
-      <Divider />
+      <Divider variant="fullWidth" />
       <NoteList />
     </>
   );
