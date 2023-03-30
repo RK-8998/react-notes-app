@@ -1,24 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import Sidebar from "./layout/Sidebar";
+
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import HomePage from "./pages/HomePage";
+import AddNotePage from "./pages/AddNotePage";
+import SavedNotes from "./pages/SavedNotes";
+import NotFoundPage from "./pages/404";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Sidebar />,
+    children: [
+      { index: true, element: <HomePage /> },
+      { path: "/addNote", element: <AddNotePage /> },
+      { path: "/savedNotes", element: <SavedNotes /> },
+    ],
+  },
+  { path: "*", element: <NotFoundPage /> },
+]);
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <RouterProvider router={router} />
+    </>
   );
 }
 
