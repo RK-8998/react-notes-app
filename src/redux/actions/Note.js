@@ -8,7 +8,9 @@ export const noteActions = {
 export const addNote = (payload) => {
   return { type: noteActions.ADD_NOTE, payload };
 };
-
+export const deleteNote = (id) => {
+  return { type: noteActions.DELETE_NOTE, payload: { id } };
+};
 export const saveNote = (id) => {
   return { type: noteActions.SAVE_NOTE, payload: { id } };
 };

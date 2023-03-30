@@ -10,7 +10,9 @@ import { useDispatch } from "react-redux";
 
 import { saveNote, unSaveNote } from "../redux/actions/Note";
 
-const Note = ({ id, title, description, isSaved }) => {
+const Note = ({ id, title, description, isSaved, onDeleteNote }) => {
+  console.log("RENDER NOTE");
+
   const dispatch = useDispatch();
   const saveHandler = () => {
     dispatch(saveNote(id));
@@ -34,7 +36,7 @@ const Note = ({ id, title, description, isSaved }) => {
           <Button disabled={isSaved} onClick={saveHandler}>
             {isSaved ? "SAVED" : "SAVE"}
           </Button>
-          <Button>DELETE</Button>
+          <Button onClick={() => onDeleteNote(id)}>DELETE</Button>
         </ButtonGroup>
         {isSaved && (
           <Button color="inherit" onClick={unSaveHandler}>

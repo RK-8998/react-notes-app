@@ -25,6 +25,14 @@ const NoteReducer = (state = initialState, action) => {
   let newNotes;
   let index;
   switch (action.type) {
+    case noteActions.ADD_NOTE:
+      newNotes = state.concat(action.payload);
+      return newNotes;
+
+    case noteActions.DELETE_NOTE:
+      newNotes = state.filter((note) => note.id !== action.payload.id);
+      return newNotes;
+
     case noteActions.SAVE_NOTE:
       newNotes = [...state];
       index = newNotes.findIndex((note) => note.id === action.payload.id);
