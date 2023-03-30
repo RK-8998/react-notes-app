@@ -1,7 +1,12 @@
 import React from "react";
+import NoteForm from "../components/NoteForm";
 
 const AddNotePage = () => {
-  return <div>AddNotePage</div>;
+  return (
+    <>
+      <NoteForm />
+    </>
+  );
 };
 
 export default AddNotePage;
