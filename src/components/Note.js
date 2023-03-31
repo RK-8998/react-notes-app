@@ -6,20 +6,9 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import { ButtonGroup } from "@mui/material";
-import { useDispatch } from "react-redux";
 
-import { saveNote, unSaveNote } from "../redux/actions/Note";
-
-const Note = ({ id, title, description, isSaved, onDeleteNote }) => {
+const Note = ({ id, title, description, isSaved, onDeleteNote, onSaveNote, onUnSaveNote }) => {
   console.log("RENDER NOTE");
-
-  const dispatch = useDispatch();
-  const saveHandler = () => {
-    dispatch(saveNote(id));
-  };
-  const unSaveHandler = () => {
-    dispatch(unSaveNote(id));
-  };
 
   return (
     <Card sx={{ minWidth: 275, marginTop: 5 }}>
@@ -33,13 +22,13 @@ const Note = ({ id, title, description, isSaved, onDeleteNote }) => {
       </CardContent>
       <CardActions>
         <ButtonGroup variant="outlined" aria-label="outlined button group">
-          <Button disabled={isSaved} onClick={saveHandler}>
+          <Button disabled={isSaved} onClick={() => onSaveNote(id)}>
             {isSaved ? "SAVED" : "SAVE"}
           </Button>
           <Button onClick={() => onDeleteNote(id)}>DELETE</Button>
         </ButtonGroup>
         {isSaved && (
-          <Button color="inherit" onClick={unSaveHandler}>
+          <Button color="inherit" onClick={() => onUnSaveNote(id)}>
             <BookmarkIcon />
           </Button>
         )}

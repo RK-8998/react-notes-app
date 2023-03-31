@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import { deleteNote } from "../redux/actions/Note";
 import Note from "./Note";
+import { saveNote, unSaveNote } from "../redux/actions/Note";
 
 const NoteList = () => {
   console.log("RENDER NoteList");
@@ -30,9 +31,26 @@ const NoteList = () => {
     filterSavedNotes();
   }, [filterSavedNotes]);
 
-  const deleteNoteHandler = (id) => {
-    dispatch(deleteNote(id));
-  };
+  const saveHandler = useCallback(
+    (id) => {
+      dispatch(saveNote(id));
+    },
+    [dispatch]
+  );
+
+  const unSaveHandler = useCallback(
+    (id) => {
+      dispatch(unSaveNote(id));
+    },
+    [dispatch]
+  );
+
+  const deleteNoteHandler = useCallback(
+    (id) => {
+      dispatch(deleteNote(id));
+    },
+    [dispatch]
+  );
 
   return (
     <>
@@ -46,6 +64,8 @@ const NoteList = () => {
               description={note.description}
               isSaved={note.isSaved}
               onDeleteNote={deleteNoteHandler}
+              onSaveNote={saveHandler}
+              onUnSaveNote={unSaveHandler}
             />
           );
         })
