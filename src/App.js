@@ -7,7 +7,6 @@ import HomePage from "./pages/HomePage";
 import AddNotePage from "./pages/AddNotePage";
 import SavedNotes from "./pages/SavedNotes";
 import NotFoundPage from "./pages/404";
-import SidebarDemo from "./layout/SidebarDemo";
 
 const router = createBrowserRouter([
   {

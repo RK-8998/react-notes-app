@@ -5,9 +5,11 @@ import { addNote } from "../redux/actions/Note";
 import { v4 as generateId } from "uuid";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+
+import SweatAlert from "../ui/SweatAlert";
 
 const NoteForm = () => {
-  console.log("RENDER NEW NOTE FORM");
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -31,7 +33,7 @@ const NoteForm = () => {
     setIsDescriptionTouched(false);
   };
 
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
     setIsTitleTouched(true);
     setIsDescriptionTouched(true);
@@ -43,8 +45,9 @@ const NoteForm = () => {
         title,
         description,
       };
-      dispatch(addNote(payload));
+      await dispatch(addNote(payload));
       resetForm();
+      await Swal.fire("Added!", "Your Note Added Successfully", "success");
       navigate("/");
     }
   };
@@ -62,7 +65,6 @@ const NoteForm = () => {
         noValidate
         autoComplete="off"
       >
-        {/* <form onSubmit={submitHandler}> */}
         <div>
           <TextField
             variant="outlined"
@@ -91,7 +93,6 @@ const NoteForm = () => {
         <Button type="submit" variant="contained" startIcon={<PlaylistAddIcon />}>
           ADD
         </Button>
-        {/* </form> */}
       </Box>
     </>
   );

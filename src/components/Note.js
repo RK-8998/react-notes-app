@@ -8,8 +8,6 @@ import BookmarkIcon from "@mui/icons-material/Bookmark";
 import { ButtonGroup } from "@mui/material";
 
 const Note = ({ id, title, description, isSaved, onDeleteNote, onSaveNote, onUnSaveNote }) => {
-  console.log("RENDER NOTE");
-
   return (
     <Card sx={{ minWidth: 275, marginTop: 5 }}>
       <CardContent>
